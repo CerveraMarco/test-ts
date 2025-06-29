@@ -25,4 +25,16 @@ test('get started link 3', async ({ page }) => {
 
   // Expects page to have a heading with the name of Installation.
   await expect(page.getByRole('heading', { name: 'Installation' })).toBeVisible();
-});
+}); 
+
+test('Busqueda', async ({ page }) => {
+  await page.goto('https://www.mercadolibre.com.mx/');
+
+  // Fill the elemente
+  await page.locator('#cb1-edit').fill('Iphone');
+
+  // Search
+  await page.keyboard.press('Enter');
+
+  await expect(page.locator('.ui-search-layout')).toBeVisible;
+}); 
