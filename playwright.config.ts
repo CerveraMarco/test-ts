@@ -30,6 +30,9 @@ export default defineConfig({
     headless: false, // <-- Esto hace que se vea el navegador
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
+    screenshot: 'only-on-failure',
+    video: 'retain-on-failure',
+    baseURL: 'https://example.com',
   },
 
   /* Configure projects for major browsers */

@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { LoginPage } from '../Pages/LoginPage';
 
 test('Busqueda', async ({ page }) => {
   await page.goto('https://www.mercadolibre.com.mx/');
@@ -20,3 +21,12 @@ test('Busqueda', async ({ page }) => {
   console.log('Encontramos', titles.length);
 });
 
+
+
+test('should show error for invalid login', async ({ page }) => {
+  const loginPage = new LoginPage(page);
+  await loginPage.goto();
+  await loginPage.login('invalidUser', 'wrongPass');
+  const error = await loginPage.getErrorMessage();
+  expect(error).toContain('Invalid credentials');
+});
